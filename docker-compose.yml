@@ -1,0 +1,26 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ./server-springboot
+      dockerfile: Dockerfile
+    container_name: money_manager_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:rootpassword@mongo:27017/moneydb?authSource=admin
+
+volumes:
+  mongo_data:

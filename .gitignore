@@ -1,0 +1,34 @@
+# module build dirs
+/client-swing/target/
+/server-springboot/target/
+
+# logs & runtime
+*.log
+logs/
+*.log.*
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# env / secrets
+.env
+.env.local
+
+# java artifacts
+*.class
+*.jar
+*.war
+
+# build tool caches
+.mvn/
+.gradle/
+build/
