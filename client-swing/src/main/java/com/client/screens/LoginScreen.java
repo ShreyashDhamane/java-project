@@ -122,9 +122,8 @@ public class LoginScreen extends BasePanel {
                 AppState.getInstance().setJwtToken(token);
 
                 // ---- Fetch entries with JWT ----
-                String entriesJson = HttpClient.getAuthorized(
-                        Constants.BASE_URL + "/api/data-entries/user/" + username,
-                        token
+                String entriesJson = HttpClient.get(
+                        Constants.BASE_URL + "/api/data-entries/user/" + username
                 );
 
                 if (entriesJson != null && !entriesJson.isEmpty()) {
@@ -133,9 +132,8 @@ public class LoginScreen extends BasePanel {
                 }
 
                 // ---- Fetch categories with JWT ----
-                String catJson = HttpClient.getAuthorized(
-                        Constants.BASE_URL + "/categories/" + username,
-                        token
+                String catJson = HttpClient.get(
+                        Constants.BASE_URL + "/categories/" + username
                 );
 
                 if (catJson != null && !catJson.isEmpty()) {

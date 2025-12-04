@@ -193,11 +193,7 @@ public class SettingsScreen extends BasePanel {
                 String username = AppState.getInstance().getUsername();
                 String token = AppState.getInstance().getJwtToken();   // 🔥 GET JWT
 
-                // 🔥 AUTHORIZED DELETE REQUEST
-                String result = HttpClient.deleteAuthorized(
-                    Constants.BASE_URL + "/auth/" + username,
-                    token
-                );
+                String result = HttpClient.delete(Constants.BASE_URL + "/auth/" + username);
 
                 if ("OK".equals(result)) {
                     javax.swing.SwingUtilities.invokeLater(() -> {

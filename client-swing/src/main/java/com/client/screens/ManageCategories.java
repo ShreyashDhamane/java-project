@@ -159,7 +159,7 @@ public class ManageCategories extends BasePanel {
                 String url = BASE_URL + "/" + username;
 
                 // 🔥 SEND JWT
-                String json = HttpClient.getAuthorized(url, token);
+                String json = HttpClient.get(url);
 
                 if (json == null) {
                     return;
@@ -256,7 +256,7 @@ public class ManageCategories extends BasePanel {
                 );
 
                 // 🔥 USE AUTHORIZED POST
-                String res = HttpClient.postAuthorized(BASE_URL, jsonBody, token);
+                String res = HttpClient.post(BASE_URL, jsonBody);
 
                 if ("OK".equalsIgnoreCase(res)) {
                     loadCategoriesAsync();  // refresh categories
@@ -293,10 +293,9 @@ public class ManageCategories extends BasePanel {
                 );
 
                 // 🔥 SEND AUTHORIZED PUT REQUEST
-                String res = HttpClient.putAuthorized(
+                String res = HttpClient.put(
                     BASE_URL + "/" + cat.getId(),
-                    json,
-                    token
+                    json
                 );
 
                 if ("OK".equalsIgnoreCase(res)) {
