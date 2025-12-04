@@ -3,6 +3,7 @@ package com.server.service;
 import org.springframework.stereotype.Service;
 
 import com.server.repository.UserRepo;
+import com.server.security.JWTUtil;
 import com.server.model.DataEntry;
 import com.server.model.ExpenseCategory;
 import com.server.model.User;
@@ -26,17 +27,19 @@ public class AuthService {
     private final ExpenseCategoryRepo expenseCategoryRepo; // expense category are specific to user
     private final DataEntryRepo dataEntryRepo;
     private final String pepper;
+    private final JWTUtil jwtUtil;
 
     public AuthService(
         UserRepo userRepo,
         ExpenseCategoryRepo expenseCategoryRepo,
         DataEntryRepo dataEntryRepo,
-        Dotenv dotenv
+        Dotenv dotenv,
+        JWTUtil jwtUtil
     ) { 
         this.userRepo = userRepo; 
         this.expenseCategoryRepo = expenseCategoryRepo;
         this.dataEntryRepo = dataEntryRepo;
-
+        this.jwtUtil = jwtUtil;
         this.pepper = dotenv.get("SECURITY_PEPPER");
     }
 
@@ -127,23 +130,21 @@ public class AuthService {
     }
 
 
-    public boolean login(String username, String password) {
-        User u = userRepo.findByUsername(username); // find user by username
-        
-        if (u == null) {
-            return false; // user not found
-        }
-        
+    public String login(String username, String password) {
+        User u = userRepo.findByUsername(username);
+        if (u == null) return null;
+
         try {
-            // hash the provided password with the stored salt
             String hash = hashPassword(password, u.getSalt());
-            // compare the hashs
-            return hash.equals(u.getPasswordHash());
+            if (!hash.equals(u.getPasswordHash())) return null;
+
+            return jwtUtil.generateToken(username);
+
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            return null;
         }
     }
+
 
     // Delete user account and all associated data
     public boolean deleteAccount(String username) {

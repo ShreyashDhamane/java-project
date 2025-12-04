@@ -1,6 +1,9 @@
 package com.server.controller;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.*;
+
 import com.server.service.AuthService;
 
 // record class to hold auth request data
@@ -27,11 +30,22 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public String login(@RequestBody AuthRequest req){
-        if(service.login(req.username(), req.password())){
-            return "OK";
+    public Map<String, Object> login(@RequestBody AuthRequest req) {
+
+        // AuthService.login(...) now returns a token or null
+        String token = service.login(req.username(), req.password());
+
+        if (token == null) {
+            return Map.of(
+                    "success", false,
+                    "message", "Invalid credentials"
+            );
         }
-        return "INVALID";
+
+        return Map.of(
+                "success", true,
+                "token", token
+        );
     }
 
     @DeleteMapping("/{username}")

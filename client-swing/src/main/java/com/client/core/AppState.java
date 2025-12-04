@@ -20,6 +20,7 @@ public class AppState {
     private String currencyCode = "USD";   // e.g. "INR" // default currency code
     private String currencySymbol = "$";   // e.g. "₹" // default currency symbol
     private List<ExpenseCategory> categories = new ArrayList<>(); // list of expense categories
+    private String jwtToken;
 
     // Map of currency codes, currently limited to few common ones
     private static final Map<String, String> CURRENCY_MAP = Map.of(
@@ -122,5 +123,14 @@ public class AppState {
 
     public void setCurrencies(List<Currency> currencies) {
         this.currencies = currencies;
+    }
+
+
+    public String getJwtToken() {
+        return jwtToken;
+    }
+
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 }

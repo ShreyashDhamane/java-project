@@ -191,25 +191,34 @@ public class SettingsScreen extends BasePanel {
         new Thread(() -> {
             try {
                 String username = AppState.getInstance().getUsername();
-                // send delete request
-                String result = HttpClient.delete(Constants.BASE_URL + "/auth/" + username);
+                String token = AppState.getInstance().getJwtToken();   // 🔥 GET JWT
 
-                // handle response on UI thread
+                // 🔥 AUTHORIZED DELETE REQUEST
+                String result = HttpClient.deleteAuthorized(
+                    Constants.BASE_URL + "/auth/" + username,
+                    token
+                );
+
                 if ("OK".equals(result)) {
                     javax.swing.SwingUtilities.invokeLater(() -> {
                         JOptionPane.showMessageDialog(
-                                this, "Your account has been deleted.",
-                                "Deleted", JOptionPane.INFORMATION_MESSAGE
+                            this,
+                            "Your account has been deleted.",
+                            "Deleted",
+                            JOptionPane.INFORMATION_MESSAGE
                         );
+                        
                         AppState.getInstance().reset();
                         ScreenManager.show(new LoginScreen());
                     });
                 } else {
                     javax.swing.SwingUtilities.invokeLater(() ->
-                            JOptionPane.showMessageDialog(
-                                    this, "Failed to delete account. Try again later.",
-                                    "Error", JOptionPane.ERROR_MESSAGE
-                            )
+                        JOptionPane.showMessageDialog(
+                            this,
+                            "Failed to delete account. Try again later.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                        )
                     );
                 }
             } catch (Exception ex) {
@@ -217,6 +226,7 @@ public class SettingsScreen extends BasePanel {
             }
         }).start();
     }
+
 
     // layout
     @Override

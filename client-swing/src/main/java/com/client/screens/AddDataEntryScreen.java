@@ -313,6 +313,11 @@ public class AddDataEntryScreen extends BasePanel {
                 conn.setRequestProperty("Content-Type", "application/json");
                 conn.setDoOutput(true);
 
+                String token = AppState.getInstance().getJwtToken();
+                if (token != null && !token.isEmpty()) {
+                    conn.setRequestProperty("Authorization", "Bearer " + token);
+                }
+
                 try (java.io.OutputStream os = conn.getOutputStream()) {
                     os.write(json.getBytes());
                 }

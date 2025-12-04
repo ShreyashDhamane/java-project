@@ -79,7 +79,7 @@ public class LoginScreen extends BasePanel {
 
         loginBtn.addActionListener(e -> {
             status.setText("");
-            // get data and validate
+
             String username = userField.getText();
             String password = new String(passField.getPassword());
 
@@ -89,51 +89,70 @@ public class LoginScreen extends BasePanel {
             }
 
             if (!Validators.isStrongPassword(password)) {
-                // for multiline i need ti use html tagsin swing
-                // else text will be cut off
                 status.setText("<html>Password must be at least 8 characters,<br>"
-                    + "include uppercase, lowercase, digit, and special character</html>");
-
+                        + "include uppercase, lowercase, digit, and special character</html>");
                 return;
             }
 
-            // make login request
+            // ---- SEND LOGIN REQUEST ----
             String response = HttpClient.post(
-                Constants.BASE_URL + "/auth/login",
-                "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}"
+                    Constants.BASE_URL + "/auth/login",
+                    "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}"
             );
 
             if (response == null) {
                 status.setText("Login failed. Could not reach server.");
-            } else if (response.equals("INVALID")) {
-                // 
-                status.setText("Invalid email or password.");
-            } else if (response.equals("OK")) {
-                // successful login
-                // store username in app state for future use
-                AppState.getInstance().setUsername(username);
+                return;
+            }
 
-                // Fetch all entries from backend
-                String entriesJson = HttpClient.get(Constants.BASE_URL + "/api/data-entries/user/" + username);
+            try {
+                // Parse JSON
+                org.json.JSONObject obj = new org.json.JSONObject(response);
+
+                if (!obj.getBoolean("success")) {
+                    status.setText("Invalid username or password.");
+                    return;
+                }
+
+                // ---- GET JWT ----
+                String token = obj.getString("token");
+
+                // Save in AppState
+                AppState.getInstance().setUsername(username);
+                AppState.getInstance().setJwtToken(token);
+
+                // ---- Fetch entries with JWT ----
+                String entriesJson = HttpClient.getAuthorized(
+                        Constants.BASE_URL + "/api/data-entries/user/" + username,
+                        token
+                );
+
                 if (entriesJson != null && !entriesJson.isEmpty()) {
                     List<DataEntry> entries = HttpClient.fromJsonList(entriesJson, DataEntry.class);
-                    // store in app state
                     AppState.getInstance().setEntries(entries);
                 }
 
-                // load all categories for user specific
-                String catJson = HttpClient.get(Constants.BASE_URL + "/categories/" + username);
+                // ---- Fetch categories with JWT ----
+                String catJson = HttpClient.getAuthorized(
+                        Constants.BASE_URL + "/categories/" + username,
+                        token
+                );
+
                 if (catJson != null && !catJson.isEmpty()) {
                     List<ExpenseCategory> cats = HttpClient.fromJsonList(catJson, ExpenseCategory.class);
                     AppState.getInstance().setCategories(cats);
                 }
 
-                // Navigate to dashboard
+                // ---- Go to dashboard ----
                 ScreenManager.show(new DashboardScreen());
-            } else {
-                status.setText("Unexpected response: " + response);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                status.setText("Error parsing login response.");
             }
+
         });
+
 
         add(loginBtn);
 

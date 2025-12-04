@@ -154,8 +154,13 @@ public class ManageCategories extends BasePanel {
         new Thread(() -> {
             try {
                 String username = AppState.getInstance().getUsername();
-                String json = HttpClient.get(BASE_URL + "/" + username);
-                
+                String token = AppState.getInstance().getJwtToken();
+
+                String url = BASE_URL + "/" + username;
+
+                // 🔥 SEND JWT
+                String json = HttpClient.getAuthorized(url, token);
+
                 if (json == null) {
                     return;
                 }
@@ -176,6 +181,7 @@ public class ManageCategories extends BasePanel {
             }
         }).start();
     }
+
 
     private void rebuildList() {
         listPanel.removeAll();
@@ -240,50 +246,61 @@ public class ManageCategories extends BasePanel {
     private void createCategoryAsync(String name, String icon, String username) {
         new Thread(() -> {
             try {
+
+                String token = AppState.getInstance().getJwtToken();  // 🔥 GET JWT
+
                 // create json body
                 String jsonBody = String.format(
                     "{\"name\":\"%s\",\"icon\":\"%s\",\"username\":\"%s\"}",
                     escape(name), escape(icon), escape(username)
                 );
 
-                String res = HttpClient.post(BASE_URL, jsonBody);
+                // 🔥 USE AUTHORIZED POST
+                String res = HttpClient.postAuthorized(BASE_URL, jsonBody, token);
 
                 if ("OK".equalsIgnoreCase(res)) {
-                    loadCategoriesAsync();
-                    // success
-                    // we reload categories from backend to keep in sync
+                    loadCategoriesAsync();  // refresh categories
                 } else {
                     javax.swing.SwingUtilities.invokeLater(() ->
-                            JOptionPane.showMessageDialog(
-                                this, "Category already exists.",
-                                "Error", JOptionPane.ERROR_MESSAGE
-                            ));
+                        JOptionPane.showMessageDialog(
+                            this, "Category already exists.",
+                            "Error", JOptionPane.ERROR_MESSAGE
+                        )
+                    );
                 }
-            } catch (Exception ex) { ex.printStackTrace(); }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }).start();
     }
+
 
     // update category,
     // we will run this in a separate thread to avoid blocking UI
     private void updateCategoryAsync(ExpenseCategory cat) {
         new Thread(() -> {
             try {
-                // create json body
                 String username = AppState.getInstance().getUsername();
+                String token = AppState.getInstance().getJwtToken();   // 🔥 GET JWT
 
+                // JSON body
                 String json = String.format(
-                        "{\"name\":\"%s\",\"icon\":\"%s\",\"username\":\"%s\"}",
-                        escape(cat.getName()),
-                        escape(cat.getIcon()),
-                        escape(username)
+                    "{\"name\":\"%s\",\"icon\":\"%s\",\"username\":\"%s\"}",
+                    escape(cat.getName()),
+                    escape(cat.getIcon()),
+                    escape(username)
                 );
-                // send PUT request to update category
-                String res = HttpClient.put(BASE_URL + "/" + cat.getId(), json);
+
+                // 🔥 SEND AUTHORIZED PUT REQUEST
+                String res = HttpClient.putAuthorized(
+                    BASE_URL + "/" + cat.getId(),
+                    json,
+                    token
+                );
 
                 if ("OK".equalsIgnoreCase(res)) {
-                    // success
-                    // reload categories from backend to keep in sync
-                    loadCategoriesAsync();
+                    loadCategoriesAsync(); // refresh categories
                 } else {
                     javax.swing.SwingUtilities.invokeLater(() ->
                         JOptionPane.showMessageDialog(
@@ -291,12 +308,16 @@ public class ManageCategories extends BasePanel {
                             "Update failed.",
                             "Error",
                             JOptionPane.ERROR_MESSAGE
-                        ));
+                        )
+                    );
                 }
 
-            } catch (Exception ex) { ex.printStackTrace(); }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }).start();
     }
+
 
 
     private static String escape(String s) { 

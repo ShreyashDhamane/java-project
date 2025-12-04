@@ -144,4 +144,81 @@ public class HttpClient {
             return null;
         }
     }
+
+    public static String getAuthorized(String urlStr, String token) {
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
+
+            httpConnection.setRequestMethod("GET");
+            httpConnection.setRequestProperty("Authorization", "Bearer " + token);
+
+            return read(httpConnection);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String postAuthorized(String urlStr, String json, String token) {
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Authorization", "Bearer " + token);
+            con.setDoOutput(true);
+
+            try (OutputStream os = con.getOutputStream()) {
+                os.write(json.getBytes());
+            }
+
+            return read(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String putAuthorized(String urlStr, String json, String token) {
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Authorization", "Bearer " + token);
+            con.setDoOutput(true);
+
+            try (OutputStream os = con.getOutputStream()) {
+                os.write(json.getBytes());
+            }
+
+            return read(con);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String deleteAuthorized(String urlStr, String token) {
+        try {
+            URL url = new URL(urlStr);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+            con.setRequestMethod("DELETE");
+            con.setRequestProperty("Authorization", "Bearer " + token);
+
+            int status = con.getResponseCode();
+            if (status == 200 || status == 204) return "OK";
+
+            return read(con);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
