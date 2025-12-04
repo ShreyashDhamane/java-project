@@ -15,6 +15,9 @@ import java.security.MessageDigest;
 import com.server.repository.DataEntryRepo;
 import com.server.repository.ExpenseCategoryRepo;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
+
 // this layer contains all business logic related to authentication
 @Service
 public class AuthService {
@@ -22,15 +25,19 @@ public class AuthService {
     private final UserRepo userRepo;
     private final ExpenseCategoryRepo expenseCategoryRepo; // expense category are specific to user
     private final DataEntryRepo dataEntryRepo;
+    private final String pepper;
 
     public AuthService(
         UserRepo userRepo,
         ExpenseCategoryRepo expenseCategoryRepo,
-        DataEntryRepo dataEntryRepo
+        DataEntryRepo dataEntryRepo,
+        Dotenv dotenv
     ) { 
         this.userRepo = userRepo; 
         this.expenseCategoryRepo = expenseCategoryRepo;
         this.dataEntryRepo = dataEntryRepo;
+
+        this.pepper = dotenv.get("SECURITY_PEPPER");
     }
 
     // Generate random salt, 16 bytes long
@@ -48,7 +55,9 @@ public class AuthService {
         // Combine password and salt, then hash
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         // Convert combined string to bytes and update the message digest
-        md.update((password + salt).getBytes());
+        String combined = password + salt + pepper;
+        System.out.println("Hashing password with pepper string: " + pepper);
+        md.update(combined.getBytes());
         // Compute the final hash value
         return Base64.getEncoder().encodeToString(md.digest());
     }
