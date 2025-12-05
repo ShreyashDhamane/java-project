@@ -1,4 +1,4 @@
-package com.client.screens;
+package com.client.screens.dashboard;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,8 +34,7 @@ import com.client.core.AppState;
 import com.client.core.BasePanel;
 import com.client.core.ScreenManager;
 import com.client.model.DataEntry;
-import com.client.screens.dashboard.DashboardRowFactory;
-import com.client.screens.dashboard.DayGroup;
+import com.client.screens.addentry.AddDataEntryScreen;
 
 public class DashboardScreen extends BasePanel {
 

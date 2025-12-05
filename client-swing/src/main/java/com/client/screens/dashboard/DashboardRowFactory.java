@@ -10,7 +10,7 @@ import com.client.constants.UIColors;
 import com.client.constants.UIFonts;
 import com.client.core.ScreenManager;
 import com.client.model.DataEntry;
-import com.client.screens.AddDataEntryScreen;
+import com.client.screens.addentry.AddDataEntryScreen;
 
 public class DashboardRowFactory {
 

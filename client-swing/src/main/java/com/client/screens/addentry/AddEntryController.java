@@ -11,7 +11,7 @@ import com.client.core.AppState;
 import com.client.core.BasePanel;
 import com.client.core.ScreenManager;
 import com.client.model.DataEntry;
-import com.client.screens.DashboardScreen;
+import com.client.screens.dashboard.DashboardScreen;
 
 public class AddEntryController {
 

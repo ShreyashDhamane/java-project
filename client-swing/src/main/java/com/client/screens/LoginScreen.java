@@ -21,6 +21,7 @@ import com.client.core.BasePanel;
 import com.client.core.ScreenManager;
 import com.client.model.DataEntry;
 import com.client.model.ExpenseCategory;
+import com.client.screens.dashboard.DashboardScreen;
 import com.client.utils.HttpClient;
 import com.client.utils.Validators;
 

@@ -1,4 +1,4 @@
-package com.client.screens;
+package com.client.screens.addentry;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -7,10 +7,6 @@ import java.awt.Graphics2D;
 
 import com.client.core.BasePanel;
 import com.client.model.DataEntry;
-import com.client.screens.addentry.AddEntryController;
-import com.client.screens.addentry.AddEntryForm;
-import com.client.screens.addentry.AddEntryLayout;
-import com.client.screens.addentry.AddEntryPreloader;
 
 // screen to add or edit a data entry (expense/income)
 public class AddDataEntryScreen extends BasePanel {
