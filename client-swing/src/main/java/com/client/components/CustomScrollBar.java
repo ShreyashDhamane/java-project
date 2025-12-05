@@ -54,7 +54,10 @@ public class CustomScrollBar extends BasicScrollBarUI {
     protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
         Graphics2D g2 = (Graphics2D) g.create();
         // smooth edges
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(
+            RenderingHints.KEY_ANTIALIASING,
+            RenderingHints.VALUE_ANTIALIAS_ON
+        );
 
         if (!scrollbar.isEnabled()) {
             return;
@@ -63,7 +66,14 @@ public class CustomScrollBar extends BasicScrollBarUI {
         g2.setColor(THUMB_COLOR);
 
         int arc = 12; // border radius for thumb
-        g2.fillRoundRect(r.x, r.y, r.width, r.height, arc, arc);
+        g2.fillRoundRect(
+            r.x,
+            r.y,
+            r.width,
+            r.height,
+            arc,
+            arc
+        );
 
         g2.dispose();
     }

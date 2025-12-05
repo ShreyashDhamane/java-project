@@ -1,12 +1,9 @@
 package com.client.screens;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -33,11 +30,11 @@ import com.client.components.ArrowButton;
 import com.client.components.BottomNavigationBar;
 import com.client.components.CustomScrollBar;
 import com.client.components.StatsScreenComponents;
-import com.client.components.StatsScreenComponents.CategoryLegendItem;
-import com.client.components.StatsScreenComponents.EmojiMapper;
-import com.client.components.StatsScreenComponents.PieSlice;
-import com.client.components.StatsScreenComponents.PieChartPanel;
 import com.client.components.TimeSeriesChartPanel;
+import com.client.components.stats.CategoryLegendItem;
+import com.client.components.stats.EmojiMapper;
+import com.client.components.stats.PieChartPanel;
+import com.client.components.stats.PieSlice;
 import com.client.constants.StatsScreenConstants;
 import com.client.constants.UIFonts;
 import com.client.constants.UIStyle;
@@ -470,7 +467,7 @@ public class StatsScreen extends BasePanel {
         for (Map.Entry<String, Long> e : sorted) {
             double percent = (totalAmount == 0) ? 0 : (e.getValue() * 1.0 / totalAmount);
             Color color = PieChartPanel.SLICE_COLORS[colorIndex % PieChartPanel.SLICE_COLORS.length];
-            String emoji = EmojiMapper.getEmojiForCategory(e.getKey());
+            String emoji = EmojiMapper.get(e.getKey());
             slices.add(new PieSlice(e.getKey(), emoji, e.getValue(), percent, color));
             colorIndex++;
         }

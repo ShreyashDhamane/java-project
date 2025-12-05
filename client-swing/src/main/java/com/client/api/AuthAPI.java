@@ -17,14 +17,17 @@ public class AuthAPI {
     private static final MediaType JSON = MediaType.get("application/json");
 
     // LOGIN,  receives JWT and stores in AppState
-    public static boolean login(String username, String password) throws Exception {
+    public static boolean login(
+        String username,
+        String password
+        ) throws Exception {
 
         String json = String.format("{\"username\":\"%s\", \"password\":\"%s\"}", username, password);
 
         Request req = new Request.Builder()
-                .url(Constants.BASE_URL + "/auth/login")
-                .post(RequestBody.create(json, JSON))
-                .build();
+            .url(Constants.BASE_URL + "/auth/login")
+            .post(RequestBody.create(json, JSON))
+            .build();
 
         try (Response r = httpClient.newCall(req).execute()) {
 
@@ -38,11 +41,11 @@ public class AuthAPI {
                 return false;
             }
 
-            // 🌟 Store JWT token in global AppState
+            // Store JWT token in global AppState
             String token = obj.getString("token");
             AppState.getInstance().setJwtToken(token);
 
-            // Optionally store username
+            // store username
             AppState.getInstance().setUsername(username);
 
             return true;
@@ -50,7 +53,11 @@ public class AuthAPI {
     }
 
     // REGISTER, should return OK/ERROR from backend
-    public static boolean register(String username, String email, String password) throws Exception {
+    public static boolean register(
+        String username,
+        String email,
+        String password
+        ) throws Exception {
 
         String json = String.format(
             "{\"username\":\"%s\", \"email\":\"%s\", \"password\":\"%s\"}",
@@ -58,16 +65,16 @@ public class AuthAPI {
         );
 
         Request req = new Request.Builder()
-                .url(Constants.BASE_URL + "/auth/register")
-                .post(RequestBody.create(json, JSON))
-                .build();
+            .url(Constants.BASE_URL + "/auth/register")
+            .post(RequestBody.create(json, JSON))
+            .build();
 
         try (Response r = httpClient.newCall(req).execute()) {
-
-            if (r.body() == null) return false;
+            if (r.body() == null) {
+                return false;
+            }
 
             String body = r.body().string();
-
             JSONObject obj = new JSONObject(body);
 
             return obj.getBoolean("success");

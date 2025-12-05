@@ -26,7 +26,10 @@ public class CustomDropdown extends BasicComboBoxUI {
                 Graphics2D g2 = (Graphics2D) g.create();
 
                 // smooth edges
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON
+                );
 
                 int w = getWidth();
                 int h = getHeight();
@@ -37,9 +40,9 @@ public class CustomDropdown extends BasicComboBoxUI {
 
                 // ▼ (single arrow)
                 g2.fillPolygon(
-                        new int[]{w/2 - size, w/2, w/2 + size},
-                        new int[]{h/2 - 2, h/2 + 4, h/2 - 2},
-                        3
+                    new int[]{w/2 - size, w/2, w/2 + size},
+                    new int[]{h/2 - 2, h/2 + 4, h/2 - 2},
+                    3
                 );
 
                 g2.dispose();
@@ -60,7 +63,14 @@ public class CustomDropdown extends BasicComboBoxUI {
         Graphics2D g2 = (Graphics2D) g;
 
         g2.setColor(DROPDOWN_BG); // set custom bg color
-        g2.fillRoundRect(bounds.x, bounds.y, bounds.width, bounds.height, 10, 10); // border radius for rectangle
+        g2.fillRoundRect(
+            bounds.x, 
+            bounds.y, 
+            bounds.width, 
+            bounds.height, 
+            10, 
+            10
+        ); // border radius for rectangle
     }
 
 }

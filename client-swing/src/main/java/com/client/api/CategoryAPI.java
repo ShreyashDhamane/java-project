@@ -5,6 +5,7 @@ import java.util.List;
 import com.client.constants.Constants;
 import com.client.model.ExpenseCategory;
 import com.client.utils.HttpClient;
+
 // category is same as expense category like Food, Rent, etc.
 public class CategoryAPI {
     public static List<ExpenseCategory> fetchCategories() {

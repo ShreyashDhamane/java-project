@@ -6,7 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import javax.swing.JButton;
-// arrow buttons are used in carousel like compoments to navigate isLeftButton/right, changing month on stats and dashboard page.
+// arrow buttons are used in carousel like compoments to navigate isLeftButton/right, 
+// changing month on stats and dashboard page.
 public class ArrowButton extends JButton {
     private final boolean isLeftButton;
 
