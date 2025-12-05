@@ -615,10 +615,3 @@ This document describes the HTTP API exposed by the MoneyManager server. It list
   	-H "Content-Type: application/json" \
   	-d '{"username":"johndoe","password":"s3cret"}'
   ```
-
-**Notes & Next Steps**
-
-- This README is intentionally API-only (no usage guide). If you want, I can:
-  - generate a full OpenAPI (YAML/JSON) spec from these endpoints,
-  - add example responses with HTTP status codes per endpoint,
-  - or produce a Swagger UI static page.
