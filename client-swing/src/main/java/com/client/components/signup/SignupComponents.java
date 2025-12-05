@@ -1,4 +1,4 @@
-package com.client.screens.signup;
+package com.client.components.signup;
 
 import javax.swing.JLabel;
 

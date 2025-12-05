@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.client.components.signup.SignupComponents;
 import com.client.constants.UIFonts;
 import com.client.constants.UISizes;
 import com.client.constants.UIStyle;

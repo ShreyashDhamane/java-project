@@ -19,9 +19,7 @@ public class HttpClient {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    // ============================================================
     // GET Request (auto adds JWT except /auth/*)
-    // ============================================================
     public static String get(String urlStr) {
         try {
             URL url = new URL(urlStr);
@@ -45,9 +43,7 @@ public class HttpClient {
         }
     }
 
-    // ============================================================
     // POST Request (auto adds JWT except /auth/*)
-    // ============================================================
     public static String post(String urlStr, String json) {
         try {
             URL url = new URL(urlStr);
@@ -77,9 +73,7 @@ public class HttpClient {
         }
     }
 
-    // ============================================================
     // PUT Request (auto adds JWT)
-    // ============================================================
     public static String put(String urlStr, String json) {
         try {
             URL url = new URL(urlStr);
@@ -107,9 +101,7 @@ public class HttpClient {
         }
     }
 
-    // ============================================================
     // DELETE Request (auto adds JWT)
-    // ============================================================
     public static String delete(String urlStr) {
         try {
             URL url = new URL(urlStr);
@@ -134,9 +126,7 @@ public class HttpClient {
         }
     }
 
-    // ============================================================
-    // GLOBAL RESPONSE HANDLER (handles 401 logout)
-    // ============================================================
+   // GLOBAL RESPONSE HANDLER (handles 401 logout)
     private static String read(HttpURLConnection con) throws Exception {
 
         int status = con.getResponseCode();
@@ -169,9 +159,7 @@ public class HttpClient {
         return sb.toString();
     }
 
-    // ============================================================
     // JSON → Object
-    // ============================================================
     public static <T> T fromJson(String json, Class<T> clazz) {
         try {
             return objectMapper.readValue(json, clazz);
@@ -181,9 +169,7 @@ public class HttpClient {
         }
     }
 
-    // ============================================================
     // JSON → List<Object>
-    // ============================================================
     public static <T> List<T> fromJsonList(String json, Class<T> clazz) {
         try {
             return objectMapper.readValue(

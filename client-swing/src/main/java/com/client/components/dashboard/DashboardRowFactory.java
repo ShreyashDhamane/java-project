@@ -11,7 +11,6 @@ import com.client.constants.UIFonts;
 import com.client.core.ScreenManager;
 import com.client.model.DataEntry;
 import com.client.screens.addentry.AddDataEntryScreen;
-import com.client.screens.dashboard.DayGroup;
 
 public class DashboardRowFactory {
 

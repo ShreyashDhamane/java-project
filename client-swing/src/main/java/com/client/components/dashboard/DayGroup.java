@@ -1,4 +1,4 @@
-package com.client.screens.dashboard;
+package com.client.components.dashboard;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
