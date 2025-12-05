@@ -1,4 +1,4 @@
-package com.client.components;
+package com.client.components.stats;
 
 import java.awt.Color;
 import java.awt.Graphics;
