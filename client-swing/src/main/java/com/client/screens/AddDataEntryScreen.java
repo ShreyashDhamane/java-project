@@ -47,6 +47,8 @@ public class AddDataEntryScreen extends BasePanel {
     private JLabel statusLabel; // for on screen error messages if fields are invalid
 
     private DataEntry editingEntry = null;
+    private JButton deleteButton;
+
 
     // default constructire for adding new entry
     public AddDataEntryScreen() {
@@ -235,7 +237,55 @@ public class AddDataEntryScreen extends BasePanel {
         submitButton.addActionListener(this::submitAction);
 
         add(submitButton);
+
+        // delete nutton (only for edit mode)
+        if (editingEntry != null) {
+            deleteButton = UIStyle.createPrimaryButton("Delete");
+            deleteButton.setBackground(new Color(220, 80, 80));// red theme
+            deleteButton.addActionListener(e -> deleteEntryAsync());
+            add(deleteButton);
+        }
     }
+
+    private void deleteEntryAsync() {
+        new Thread(() -> {
+            try {
+                String token = AppState.getInstance().getJwtToken();
+                if (token == null || token.isEmpty()) {
+                    System.out.println(">>> No JWT, cannot delete");
+                    return;
+                }
+
+                String url = Constants.BASE_URL + "/api/data-entries/" + editingEntry.getId();
+
+                java.net.URL u = new java.net.URL(url);
+                java.net.HttpURLConnection conn = (java.net.HttpURLConnection) u.openConnection();
+
+                conn.setRequestMethod("DELETE");
+                conn.setRequestProperty("Authorization", "Bearer " + token);
+
+                int code = conn.getResponseCode();
+                if (code == 200 || code == 204) {
+                    // remove from AppState
+                    AppState.getInstance().getEntries().remove(editingEntry);
+
+                    javax.swing.SwingUtilities.invokeLater(() -> {
+                        ScreenManager.show(new DashboardScreen());
+                    });
+                } else {
+                    javax.swing.SwingUtilities.invokeLater(() -> {
+                        statusLabel.setText("Failed to delete. Server code: " + code);
+                    });
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                javax.swing.SwingUtilities.invokeLater(() -> {
+                    statusLabel.setText("Delete error.");
+                });
+            }
+        }).start();
+    }
+
 
     // helper to create income/expense toggle buttons
     private JRadioButton createToggle(String text, Color bg, Color fg) {
@@ -423,6 +473,11 @@ public class AddDataEntryScreen extends BasePanel {
         // Status
         y += fieldH + 10;
         statusLabel.setBounds(margin, y, w - 2 * margin, fieldH);
+
+        if (editingEntry != null && deleteButton != null) {
+            int deleteY = y;
+            deleteButton.setBounds(margin, deleteY, w - 2 * margin, fieldH);
+        }
     }
 
 

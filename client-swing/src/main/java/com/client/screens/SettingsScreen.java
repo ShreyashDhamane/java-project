@@ -191,7 +191,6 @@ public class SettingsScreen extends BasePanel {
         new Thread(() -> {
             try {
                 String username = AppState.getInstance().getUsername();
-                String token = AppState.getInstance().getJwtToken();   // 🔥 GET JWT
 
                 String result = HttpClient.delete(Constants.BASE_URL + "/auth/" + username);
 

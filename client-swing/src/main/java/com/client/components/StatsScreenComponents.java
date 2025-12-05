@@ -259,8 +259,11 @@ public class StatsScreenComponents {
             g2.setFont(UIFonts.TEXT);
             FontMetrics fm = g2.getFontMetrics();
 
+            // store previous label Y positions for collision avoidance
+            List<Integer> usedLabelYs = new ArrayList<>();
+
             for (PieSlice slice : slices) {
-                if (slice.percent <= 0.01) { // skip tiny slices
+                if (slice.percent <= 0.01) {
                     startAngle -= slice.percent * 360.0;
                     continue;
                 }
@@ -277,26 +280,41 @@ public class StatsScreenComponents {
                 int ex = cx + (int) ((radius + 20) * cos);
                 int ey = cy - (int) ((radius + 20) * sin);
 
+                // initial label point
                 int labelX;
                 int labelY = ey;
 
-                // side selection
                 boolean rightSide = cos >= 0;
+                labelX = rightSide ? ex + 10 : ex - 80;
 
-                if (rightSide) {
-                    labelX = ex + 10;
-                } else {
-                    labelX = ex - 80; // approximate label width
+                // collision detection
+                int labelHeight = fm.getHeight() + 2;
+                boolean shifted = true;
+
+                while (shifted) {
+                    shifted = false;
+                    for (int usedY : usedLabelYs) {
+                        if (Math.abs(labelY - usedY) < labelHeight) {
+                            labelY += labelHeight; // push label down
+                            shifted = true;
+                            break;
+                        }
+                    }
                 }
+
+                usedLabelYs.add(labelY);
 
                 g2.setColor(new Color(230, 230, 230));
                 g2.drawLine(sx, sy, ex, ey);
 
-                String txt = slice.category + " " + StatsScreenConstants.PERCENT_FMT.format(slice.percent * 100.0);
+                String txt = slice.category + " " +
+                        StatsScreenConstants.PERCENT_FMT.format(slice.percent * 100.0);
 
                 g2.drawString(txt, labelX, labelY);
+
                 startAngle -= slice.percent * 360.0;
             }
+
 
             // center label (total)
             g2.setFont(UIFonts.TEXT_BOLD);
