@@ -5,6 +5,9 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import com.client.components.addentry.AddEntryForm;
+import com.client.components.addentry.AddEntryLayout;
+import com.client.components.addentry.AddEntryPreloader;
 import com.client.core.BasePanel;
 import com.client.model.DataEntry;
 

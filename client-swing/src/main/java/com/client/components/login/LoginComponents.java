@@ -1,4 +1,4 @@
-package com.client.screens.login;
+package com.client.components.login;
 
 import javax.swing.JLabel;
 

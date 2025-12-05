@@ -1,4 +1,4 @@
-package com.client.screens.addentry;
+package com.client.components.addentry;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

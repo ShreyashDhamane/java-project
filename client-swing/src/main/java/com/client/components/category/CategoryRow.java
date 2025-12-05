@@ -1,4 +1,4 @@
-package com.client.screens.category;
+package com.client.components.category;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,6 +15,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.client.constants.UIFonts;
 import com.client.model.ExpenseCategory;
+import com.client.screens.category.CategoriesController;
+import com.client.screens.category.ManageCategories;
 
 public class CategoryRow extends JPanel {
 

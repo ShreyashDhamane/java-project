@@ -1,4 +1,4 @@
-package com.client.screens.category;
+package com.client.components.category;
 
 import java.awt.Color;
 import java.awt.Dimension;

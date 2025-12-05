@@ -1,10 +1,12 @@
-package com.client.screens.category;
+package com.client.components.category;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.client.core.AppState;
 import com.client.model.ExpenseCategory;
+import com.client.screens.category.CategoriesController;
+import com.client.screens.category.ManageCategories;
 
 public class CategoryDialogs {
 

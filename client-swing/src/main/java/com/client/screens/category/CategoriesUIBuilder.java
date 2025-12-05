@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 
 import com.client.components.BottomNavigationBar;
 import com.client.components.CustomScrollBar;
+import com.client.components.category.CategoryUIFactory;
 import com.client.constants.UIFonts;
 
 public class CategoriesUIBuilder {

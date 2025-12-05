@@ -2,8 +2,8 @@ package com.client.screens.category;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
-import java.awt.Graphics2D;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.client.core.BasePanel;
 import com.client.components.BottomNavigationBar;
+import com.client.components.category.CategoryListRenderer;
+import com.client.core.BasePanel;
 import com.client.model.ExpenseCategory;
 
 public class ManageCategories extends BasePanel {

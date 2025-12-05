@@ -1,6 +1,7 @@
-package com.client.screens.category;
+package com.client.components.category;
 
 import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;

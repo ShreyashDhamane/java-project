@@ -1,4 +1,4 @@
-package com.client.screens.dashboard;
+package com.client.components.dashboard;
 
 import java.awt.Color;
 
@@ -11,6 +11,7 @@ import com.client.constants.UIFonts;
 import com.client.core.ScreenManager;
 import com.client.model.DataEntry;
 import com.client.screens.addentry.AddDataEntryScreen;
+import com.client.screens.dashboard.DayGroup;
 
 public class DashboardRowFactory {
 

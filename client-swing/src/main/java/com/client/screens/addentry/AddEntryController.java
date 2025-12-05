@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.swing.SwingUtilities;
 
+import com.client.components.addentry.AddEntryForm;
 import com.client.constants.Constants;
 import com.client.core.AppState;
 import com.client.core.BasePanel;

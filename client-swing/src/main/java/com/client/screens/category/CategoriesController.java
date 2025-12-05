@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import com.client.components.category.CategoryDialogs;
 import com.client.constants.Constants;
 import com.client.core.AppState;
 import com.client.model.ExpenseCategory;

@@ -1,4 +1,4 @@
-package com.client.screens.addentry;
+package com.client.components.addentry;
 
 import com.client.core.BasePanel;
 

@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import com.client.constants.UIColors;
 import com.client.core.BasePanel;
 import com.client.core.ScreenManager;
-import com.client.screens.SettingsScreen;
 import com.client.screens.StatsScreen;
 import com.client.screens.dashboard.DashboardScreen;
+import com.client.screens.settings.SettingsScreen;
 // bottom navigation bar is a common component in all pages, allowing users to switch between main sections of the app.
 public class BottomNavigationBar extends JPanel {
 
