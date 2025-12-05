@@ -9,7 +9,7 @@ import com.client.constants.UIFonts;
 import com.client.constants.UISizes;
 import com.client.constants.UIStyle;
 import com.client.core.ScreenManager;
-import com.client.screens.SignupScreen;
+import com.client.screens.signup.SignupScreen;
 
 public class LoginUIBuilder {
 
