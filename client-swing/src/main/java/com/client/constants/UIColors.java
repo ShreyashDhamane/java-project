@@ -11,7 +11,7 @@ public class UIColors {
     public static final Color TEXT_LIGHT = new Color(120, 120, 120);
     public static final Color ERROR = new Color(231, 76, 60);
     public static final Color SUCCESS = new Color(46, 204, 113);
-
+    public static final Color DANGER = ERROR;
     // default
     public static final Color TEXT = TEXT_DARK;
 }
