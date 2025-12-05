@@ -12,7 +12,7 @@ import javax.swing.SwingUtilities;
 
 import com.client.core.AppState;
 import com.client.core.ScreenManager;
-import com.client.screens.LoginScreen;
+import com.client.screens.login.LoginScreen;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HttpClient {

@@ -7,7 +7,7 @@ import com.client.core.AppState;
 import com.client.core.BaseFrame;
 import com.client.core.ScreenManager;
 import com.client.model.Currency;
-import com.client.screens.LoginScreen;
+import com.client.screens.login.LoginScreen;
 import com.client.utils.HttpClient;
 
 public class Main {

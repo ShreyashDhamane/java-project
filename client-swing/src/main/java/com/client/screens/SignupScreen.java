@@ -17,6 +17,7 @@ import com.client.constants.UISizes;
 import com.client.constants.UIStyle;
 import com.client.core.BasePanel;
 import com.client.core.ScreenManager;
+import com.client.screens.login.LoginScreen;
 import com.client.utils.HttpClient;
 import com.client.utils.Validators;
 
