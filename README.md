@@ -1,5 +1,44 @@
 # 💰 MoneyManager — Java Personal Finance Desktop App
 
+This README provides a complete overview of the **MoneyManager** full-stack project.  
+Inside, you will find:
+
+### 🔹 1. Project Overview  
+High-level explanation of the MoneyManager app, its purpose, and end-to-end architecture.
+
+### 🔹 2. Tech Stack  
+Breakdown of frontend (Swing), backend (Spring Boot), MongoDB, JWT security, Docker, and custom Java2D charts.
+
+### 🔹 3. Screens & UX Flow  
+Screenshots and detailed descriptions of:
+- Dashboard  
+- Add/Edit Transaction  
+- Statistics (Pie & Time Series charts)  
+- Categories  
+- Settings  
+- Login & Registration  
+
+### 🔹 4. Multithreading  
+Explanation of how the UI remains responsive using background threads.
+
+### 🔹 5. JWT Authentication  
+Step-by-step flow: login, token usage, backend verification, protected endpoints, and auto-logout on 401.
+
+### 🔹 6. Docker & Environment Setup  
+How docker-compose orchestrates backend + MongoDB, `.env` variables, and backend configuration.
+
+### 🔹 7. Running the Project  
+Instructions for starting backend (Docker/manual) and frontend (IDE/terminal).
+
+### 🔹 8. Project Structure  
+Full folder hierarchy for `client-swing` and `server-springboot`.
+
+### 🔹 9. API Documentation  
+All endpoints (auth, data entries, categories, currency) with request/response examples.
+
+---
+
+
 **MoneyManager** is a full-stack **personal finance manager** built with Java.  
 It lets you securely track income & expenses, visualize trends, manage categories, and control your account, all inside a polished **Swing desktop UI** backed by a **Spring Boot + MongoDB** server.
 
