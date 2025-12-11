@@ -114,7 +114,7 @@ This screen allows users to **create a new transaction** or **edit an existing o
 
 ---
 
-### **3️⃣ Statistics Screen — Custom Java2D Charts (No Libraries)**
+### **3️⃣ Statistics Screen — Custom Java2D Charts (No Libraries) (Major Feature 1)**
 
 This screen contains the richest visualization components in the app.  
 Both charts are built manually using **pure Java2D** — **no external charting libraries** are used.
@@ -211,7 +211,7 @@ Optional, but part of the core UX flow.
 
 ---
 
-## ⚙️ Multithreading
+## ⚙️ Multithreading (Major Feature 2)
 
 MoneyManager uses **multithreading** to ensure the UI always stays smooth and responsive.  
 All heavy or blocking operations run in **background threads**, while UI updates happen safely on the Swing Event Dispatch Thread.
