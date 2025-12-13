@@ -1,5 +1,7 @@
 # 💰 MoneyManager — Java Personal Finance Desktop App
 
+[Demo Link](https://stream.nyu.edu/media/Screen+Recording+2025-12-12+at+8.14.25%E2%80%AFPM/1_n3gdkab1)
+
 This README provides a complete overview of the **MoneyManager** full-stack project.  
 Inside, you will find:
 
