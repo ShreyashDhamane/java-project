@@ -17,9 +17,11 @@ public class StatsAggregator {
         public final long totalAmount;
         public final Map<String, Long> timeSeriesTotals;
 
-        public AggregationResult(Map<String, Long> categoryTotals,
-                                 long totalAmount,
-                                 Map<String, Long> timeSeriesTotals) {
+        public AggregationResult(
+            Map<String, Long> categoryTotals,
+            long totalAmount,
+            Map<String, Long> timeSeriesTotals
+        ) {
             this.categoryTotals = categoryTotals;
             this.totalAmount = totalAmount;
             this.timeSeriesTotals = timeSeriesTotals;

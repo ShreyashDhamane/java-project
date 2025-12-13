@@ -15,9 +15,6 @@ public class LoginUIBuilder {
 
     public void build(LoginScreen scr) {
 
-        int boxWidth = 350;
-        int boxHeight = 300;
-
         // Title
         JLabel title = UIStyle.titleLabel("Money Manager");
         scr.add(title);

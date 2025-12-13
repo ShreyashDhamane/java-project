@@ -56,13 +56,13 @@ public class LoginController {
                     return;
                 }
 
-                // ----- GET JWT -----
+                // GET JWT
                 String token = obj.getString("token");
 
                 AppState.getInstance().setUsername(username);
                 AppState.getInstance().setJwtToken(token);
 
-                // ----- Fetch entries -----
+                // Fetch entries and categories
                 String entriesJson = HttpClient.get(Constants.BASE_URL + "/api/data-entries/user/" + username);
 
                 if (entriesJson != null && !entriesJson.isEmpty()) {
@@ -70,7 +70,6 @@ public class LoginController {
                     AppState.getInstance().setEntries(entries);
                 }
 
-                // ----- Fetch categories -----
                 String catJson = HttpClient.get(Constants.BASE_URL + "/categories/" + username);
 
                 if (catJson != null && !catJson.isEmpty()) {
@@ -78,7 +77,6 @@ public class LoginController {
                     AppState.getInstance().setCategories(cats);
                 }
 
-                // ----- Navigate -----
                 ScreenManager.show(new DashboardScreen());
 
             } catch (Exception ex) {

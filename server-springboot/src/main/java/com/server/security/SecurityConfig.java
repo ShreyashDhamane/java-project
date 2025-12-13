@@ -22,10 +22,10 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
 
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()   // login, register allowed
-                .requestMatchers("/currency").permitAll()
-                .requestMatchers("/currency/**").permitAll()
-                .anyRequest().authenticated()              // everything else requires JWT
+            .requestMatchers("/auth/**").permitAll()   // login, register allowed
+            .requestMatchers("/currency").permitAll()
+            .requestMatchers("/currency/**").permitAll()
+            .anyRequest().authenticated()              // everything else requires JWT
                 
         );
 

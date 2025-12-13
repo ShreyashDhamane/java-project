@@ -38,7 +38,11 @@ public class CategoryDialogs {
         }
     }
 
-    public static void showEditDialog(ManageCategories scr, CategoriesController controller, ExpenseCategory cat) {
+    public static void showEditDialog(
+        ManageCategories scr,
+        CategoriesController controller,
+        ExpenseCategory cat
+    ) {
 
         JTextField nameField = new JTextField(cat.getName());
         JTextField iconField = new JTextField(cat.getIcon());

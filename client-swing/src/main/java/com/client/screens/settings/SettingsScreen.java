@@ -11,8 +11,6 @@ import javax.swing.JLabel;
 
 import com.client.components.BottomNavigationBar;
 import com.client.core.BasePanel;
-import com.client.screens.settings.SettingsUIBuilder;
-import com.client.screens.settings.SettingsController;
 
 public class SettingsScreen extends BasePanel {
 
@@ -26,7 +24,7 @@ public class SettingsScreen extends BasePanel {
     public JLabel currencyLabel;
     public JLabel titleLabel;
 
-    private SettingsController controller;
+    private final SettingsController controller;
 
     public SettingsScreen() {
         setLayout(null);

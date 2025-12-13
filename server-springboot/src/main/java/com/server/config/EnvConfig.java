@@ -10,9 +10,9 @@ public class EnvConfig {
     @Bean
     public Dotenv dotenv() {
         return Dotenv.configure()
-                    .directory("/app")     // where .env lives inside container
-                    .ignoreIfMissing()     // avoids crash locally
-                    .load();
+            .directory("/app")     // where .env lives inside container
+            .ignoreIfMissing()     // avoids crash locally
+            .load();
     }
 
 }

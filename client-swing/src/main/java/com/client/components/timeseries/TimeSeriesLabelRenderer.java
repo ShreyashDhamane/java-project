@@ -10,10 +10,12 @@ import com.client.constants.UIFonts;
 
 public class TimeSeriesLabelRenderer {
 
-    public static void drawXLabels(Graphics2D g2,
-                                   List<Map.Entry<String, Long>> sorted,
-                                   int x0, int y0,
-                                   int chartW, int chartH) {
+    public static void drawXLabels(
+        Graphics2D g2,
+        List<Map.Entry<String, Long>> sorted,
+        int x0, int y0,
+        int chartW, int chartH
+    ) {
 
         g2.setFont(UIFonts.TEXT);
         g2.setColor(Color.WHITE);

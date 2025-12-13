@@ -17,9 +17,7 @@ public class DashboardRowFactory {
     private static final java.time.format.DateTimeFormatter DATE_OUT =
             java.time.format.DateTimeFormatter.ofPattern("EEE, MMM d, yyyy");
 
-    // ============================
     // DAY HEADER
-    // ============================
     public static BaseRowPanel createDayHeaderRow(DayGroup g) {
 
         Color bg = new Color(20, 28, 45, 220);
@@ -47,9 +45,7 @@ public class DashboardRowFactory {
         return row;
     }
 
-    // ============================
     // TRANSACTION ROW
-    // ============================
     public static BaseRowPanel createTransactionRow(DataEntry e) {
 
         BaseRowPanel row = new BaseRowPanel(28, false, null);

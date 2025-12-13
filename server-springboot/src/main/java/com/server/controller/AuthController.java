@@ -1,9 +1,7 @@
 package com.server.controller;
 
 import java.util.Map;
-
 import org.springframework.web.bind.annotation.*;
-
 import com.server.service.AuthService;
 
 // record class to hold auth request data
@@ -37,14 +35,14 @@ public class AuthController {
 
         if (token == null) {
             return Map.of(
-                    "success", false,
-                    "message", "Invalid credentials"
+                "success", false,
+                "message", "Invalid credentials"
             );
         }
 
         return Map.of(
-                "success", true,
-                "token", token
+            "success", true,
+            "token", token
         );
     }
 

@@ -8,9 +8,11 @@ import com.client.constants.UIFonts;
 
 public class TimeSeriesAxisLabelRenderer {
 
-    public static void drawLabels(Graphics2D g2,
-                                  int x0, int y0,
-                                  int chartW, int chartH) {
+    public static void drawLabels(
+        Graphics2D g2,
+        int x0, int y0,
+        int chartW, int chartH
+    ) {
 
         // X-axis label
         String xLabel = "Time Period";

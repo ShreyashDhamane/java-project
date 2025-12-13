@@ -8,12 +8,13 @@ import java.util.Map;
 
 public class TimeSeriesLineRenderer {
 
-    public static void drawLine(Graphics2D g2,
-                                List<Map.Entry<String, Long>> sorted,
-                                int x0, int y0,
-                                int chartW, int chartH,
-                                long max) {
-
+    public static void drawLine(
+        Graphics2D g2,
+        List<Map.Entry<String, Long>> sorted,
+        int x0, int y0,
+        int chartW, int chartH,
+        long max
+    ) {
         g2.setStroke(new BasicStroke(2.4f));
         g2.setColor(new Color(255, 120, 110));
 

@@ -14,7 +14,7 @@ import com.client.core.BasePanel;
 
 public class LoginScreen extends BasePanel {
 
-    // UI references (injected from builder)
+    // UI references
     public JTextField userField;
     public JPasswordField passField;
     public JLabel status;
