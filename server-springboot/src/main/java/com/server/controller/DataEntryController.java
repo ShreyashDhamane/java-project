@@ -41,13 +41,13 @@ public class DataEntryController {
         }
 
         DataEntry entry = new DataEntry(
-                req.username(),
-                req.type(),
-                java.time.LocalDate.parse(req.date()),
-                req.category(),
-                req.note(),
-                req.amount(),
-                req.paymentType()
+            req.username(),
+            req.type(),
+            java.time.LocalDate.parse(req.date()),
+            req.category(),
+            req.note(),
+            req.amount(),
+            req.paymentType()
         );
         // save entry iff valid
         service.save(entry);

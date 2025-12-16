@@ -160,7 +160,7 @@ public class AddEntryForm {
         return btn;
     }
 
-    // ===== Getters for controller/layout/preloader =====
+    // Getters for controller/layout/preloader
 
     public JButton getBackButton() {
         return backButton;

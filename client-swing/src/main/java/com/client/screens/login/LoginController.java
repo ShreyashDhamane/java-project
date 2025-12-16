@@ -34,9 +34,7 @@ public class LoginController {
                 return;
             }
 
-            // ----------------------
             // SEND LOGIN REQUEST
-            // ----------------------
             String response = HttpClient.post(
                     Constants.BASE_URL + "/auth/login",
                     "{\"username\":\"" + username + "\", \"password\":\"" + password + "\"}"

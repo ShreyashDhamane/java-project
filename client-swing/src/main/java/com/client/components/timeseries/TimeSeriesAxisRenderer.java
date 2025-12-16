@@ -9,10 +9,11 @@ import com.client.constants.UIFonts;
 
 public class TimeSeriesAxisRenderer {
 
-    public static void drawAxes(Graphics2D g2,
-                                int x0, int y0,
-                                int chartW, int chartH,
-                                long max) {
+    public static void drawAxes(
+        Graphics2D g2,
+        int x0, int y0,
+        int chartW, int chartH,
+        long max) {
 
         g2.setColor(new Color(220, 220, 220));
         g2.setStroke(new BasicStroke(1.4f));

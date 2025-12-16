@@ -9,9 +9,11 @@ public class StatsController {
     private final StatsState state;
     private final StatsViewRefresher refresher;
 
-    public StatsController(StatsScreen scr,
-                           StatsState state,
-                           StatsViewRefresher refresher) {
+    public StatsController(
+        StatsScreen scr,
+        StatsState state,
+        StatsViewRefresher refresher
+    ) {
         this.scr = scr;
         this.state = state;
         this.refresher = refresher;

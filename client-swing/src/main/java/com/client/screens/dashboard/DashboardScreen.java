@@ -67,7 +67,7 @@ public class DashboardScreen extends BasePanel {
 
     private void createComponents() {
 
-        // ------- Transaction list panel -------
+        //  Transaction list panel
         listPanel = new JPanel();
         listPanel.setOpaque(false);
         listPanel.setLayout(new BoxLayout(listPanel, BoxLayout.Y_AXIS));
@@ -108,7 +108,7 @@ public class DashboardScreen extends BasePanel {
         add(nextMonthButton);
         add(monthLabel);
 
-        //===== Year Dropdown =====
+        // Year Dropdown
         int currentYear = LocalDate.now().getYear();
         List<Integer> years = new ArrayList<>();
         for (int y = currentYear - 5; y <= currentYear + 1; y++) years.add(y);

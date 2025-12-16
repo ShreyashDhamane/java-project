@@ -82,14 +82,14 @@ public class AddEntryController {
     }
 
     private void submitToBackend(
-            String username,
-            String type,
-            String dateStr,
-            String category,
-            String note,
-            int amount,
-            String paymentType,
-            String json
+        String username,
+        String type,
+        String dateStr,
+        String category,
+        String note,
+        int amount,
+        String paymentType,
+        String json
     ) {
         try {
             boolean isEdit = (editingEntry != null);

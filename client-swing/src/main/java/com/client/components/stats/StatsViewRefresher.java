@@ -19,10 +19,11 @@ public class StatsViewRefresher {
     private final StatsAggregator aggregator;
     private final LegendBuilder legendBuilder;
 
-    public StatsViewRefresher(StatsScreen scr,
-                              StatsState state,
-                              StatsAggregator aggregator,
-                              LegendBuilder legendBuilder) {
+    public StatsViewRefresher(
+        StatsScreen scr,
+        StatsState state,
+        StatsAggregator aggregator,
+        LegendBuilder legendBuilder) {
         this.scr = scr;
         this.state = state;
         this.aggregator = aggregator;
